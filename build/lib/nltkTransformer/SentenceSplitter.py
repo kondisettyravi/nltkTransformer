@@ -6,7 +6,6 @@ from pyspark.ml.param.shared import HasInputCol, HasOutputCol
 from pyspark.ml.util import DefaultParamsReadable, DefaultParamsWritable, MLReadable, MLWritable
 from pyspark.sql.types import ArrayType, StringType
 from pyspark.sql import functions as F
-from nltk.tokenize import sent_tokenize
 
 
 class SentenceSplitter(Transformer, HasInputCol, HasOutputCol, DefaultParamsReadable, DefaultParamsWritable, MLReadable, MLWritable):

@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="nltkTransformer-kondisettyravi", # Replace with your own username
+    name="nltkTransformer", # Replace with your own username
     version="0.0.1",
     author="Ravi Teja Kondisetty",
     author_email="kondisettyravi@gmail.com",
     description="A small example package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/kondisettyravi/nltkTransformer",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
