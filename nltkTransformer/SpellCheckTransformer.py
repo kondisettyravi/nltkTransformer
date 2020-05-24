@@ -34,7 +34,7 @@ class SpellCheckTransformer(Transformer, HasInputCol, HasOutputCol, DefaultParam
         return self.getOrDefault(self.restrictedVocabGoWords)
 
     @staticmethod
-    def _known_mispelling_correction(self, original_word):
+    def _known_mispelling_correction(original_word):
         """
         Checks word against a list of know spellings and returns correction if known
         :param original_word: word to check
@@ -161,36 +161,6 @@ class SpellCheckTransformer(Transformer, HasInputCol, HasOutputCol, DefaultParam
         # If we get here, either we will have found that the passed word is with 3 edits of a correctly spelled
         # key word or we didn't find a match and the value for the corrected spelling will be None
         return corrected_spelling
-
-    def _get_spellcorrected_text(self, original_text, restricted_vocab):
-        """
-        Takes original text and returns spellchecked and corrected (if necessary) version
-        :param original_text:
-        :return: spellchecked and corrected sentence
-        """
-
-        # split sentence into words
-        text_tokens = re.split(r'(\W+)', original_text.lower())
-
-        # Loop through the tokens looking for errors
-        for idx, token in enumerate(text_tokens):
-
-            # check against known mispelling list
-            corrected_spelling = self._known_mispelling_correction(token)
-            if corrected_spelling:
-                text_tokens[idx] = corrected_spelling
-                continue
-
-            # check for spelling errors using levenstein distance
-            corrected_spelling = self._levenshtein_correction(token, restricted_vocab)
-            if corrected_spelling:
-                text_tokens[idx] = corrected_spelling
-
-        # Stitch the tokens back together to form a string.  Note: there is no space between the
-        # single quote below.  This is important because I want to put the string back together exactly as I found it
-        # including and gobbldy gook inter word stuff we're splitting on.
-        # This helps in the future for highlighting phrases with mispellings
-        return ''.join(text_tokens)
 
     def _get_spellcorrected_text(self, original_text, restricted_vocab):
         """
