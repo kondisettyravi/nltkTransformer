@@ -1,0 +1,5 @@
+nlp/*
+dist/*
+.idea
+*.egg-info
+nltkTransformer.iml
